@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HashFoundry — Software Engineering Studio</title>
+<meta name="description" content="HashFoundry is a software engineering studio. We design, build and support mobile apps, web platforms, cloud backends and payment systems for businesses.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0F12" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://hashfoundry.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HashFoundry — Software Engineering Studio">
+<meta property="og:description" content="We design, build and support mobile apps, web platforms and payment systems for businesses.">
+<meta property="og:url" content="https://hashfoundry.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FF6A1A'/%3E%3Cstop offset='1' stop-color='%23F5A300'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 1.5 28.6 8.75v14.5L16 30.5 3.4 23.25V8.75Z' fill='url(%23g)'/%3E%3Cpath d='M13.4 9.5 11.6 22.5M20.4 9.5 18.6 22.5M9.6 13.5h13M9 18.5h13' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "HashFoundry",
+  "url": "https://hashfoundry.com/",
+  "email": "hello@hashfoundry.com",
+  "description": "Software engineering studio building mobile apps, web platforms, cloud backends and payment systems."
+}
+</script>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-alt: #F3F2EE;
+    --surface: #FFFFFF;
+    --ink: #15171B;
+    --ink-2: #2B2F36;
+    --muted: #5A616D;
+    --line: #E4E2DC;
+    --line-strong: #D3D0C8;
+    --accent: #E2570B;
+    --accent-2: #F29A00;
+    --accent-soft: #FDEBDD;
+    --accent-ink: #FFFFFF;
+    --hex-line: #DCD9D1;
+    --shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 8px 24px rgba(20, 20, 20, .06);
+    --radius: 16px;
+    --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0F12;
+      --bg-alt: #131519;
+      --surface: #171A1F;
+      --ink: #F3F2EE;
+      --ink-2: #D9D8D3;
+      --muted: #A1A7B2;
+      --line: #252930;
+      --line-strong: #323741;
+      --accent: #FF7A2F;
+      --accent-2: #FFB224;
+      --accent-soft: #2B1A10;
+      --accent-ink: #15171B;
+      --hex-line: #2A2E36;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0F12;
+    --bg-alt: #131519;
+    --surface: #171A1F;
+    --ink: #F3F2EE;
+    --ink-2: #D9D8D3;
+    --muted: #A1A7B2;
+    --line: #252930;
+    --line-strong: #323741;
+    --accent: #FF7A2F;
+    --accent-2: #FFB224;
+    --accent-soft: #2B1A10;
+    --accent-ink: #15171B;
+    --hex-line: #2A2E36;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; color: var(--ink); }
+  p { margin: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  .skip {
+    position: absolute; left: 16px; top: -48px; z-index: 100;
+    background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; text-decoration: none;
+  }
+  .skip:focus { top: 12px; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
+  .brand svg { width: 30px; height: 30px; flex: none; }
+  .brand span b { color: var(--accent); font-weight: 700; }
+  nav.primary ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
+  nav.primary a {
+    display: block; padding: 8px 12px; border-radius: 8px; text-decoration: none;
+    color: var(--muted); font-size: 15px; font-weight: 500;
+  }
+  nav.primary a:hover { color: var(--ink); background: var(--bg-alt); }
+  nav.primary a.cta { color: var(--accent-ink); background: var(--ink); margin-left: 8px; padding: 8px 16px; }
+  nav.primary a.cta:hover { background: var(--ink-2); color: var(--accent-ink); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) nav.primary a.cta { color: #15171B; } }
+  :root[data-theme="dark"] nav.primary a.cta { color: #15171B; }
+  .menu-btn {
+    display: none; align-items: center; justify-content: center;
+    width: 44px; height: 44px; margin-right: -8px; border: 0; background: transparent; color: var(--ink);
+    border-radius: 10px; cursor: pointer;
+  }
+  .menu-btn svg { width: 24px; height: 24px; }
+  @media (max-width: 820px) {
+    .menu-btn { display: inline-flex; }
+    nav.primary {
+      position: absolute; left: 0; right: 0; top: 68px;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      display: none;
+    }
+    nav.primary.open { display: block; }
+    nav.primary ul { flex-direction: column; align-items: stretch; padding: 8px 16px 16px; gap: 2px; }
+    nav.primary a { padding: 12px; font-size: 16px; }
+    nav.primary a.cta { margin: 8px 0 0; text-align: center; }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 22px; border-radius: 12px;
+    font: 600 16px/1 var(--font); text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .15s ease, background-color .15s ease, border-color .15s ease;
+  }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--accent) 88%, #000); }
+  .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+  .btn-ghost:hover { border-color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-primary:hover { transform: none; } }
+
+  /* Sections */
+  section { padding: 104px 0; }
+  section.alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  @media (max-width: 700px) { section { padding: 72px 0; } }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 600 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
+  .section-head { max-width: 680px; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(30px, 4.2vw, 44px); }
+  .section-head p { margin-top: 16px; color: var(--muted); font-size: 18px; }
+
+  /* Hero */
+  .hero { padding: 88px 0 104px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 72px); letter-spacing: -0.035em; line-height: 1.04; }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .lede { margin-top: 24px; font-size: 20px; color: var(--muted); max-width: 560px; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .hero-art { position: relative; justify-self: end; width: 100%; max-width: 440px; }
+  .hero-art svg polygon { fill: none; stroke: var(--hex-line); stroke-width: 1.5; }
+  .hero-art svg polygon.hot { fill: url(#molten-hero); stroke: none; }
+  .hero-art::after {
+    content: ""; position: absolute; inset: 15% 10%; z-index: -1;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 22%, transparent), transparent);
+    filter: blur(24px);
+  }
+  .stack {
+    margin-top: 56px; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center;
+    color: var(--muted); font-size: 14px;
+  }
+  .stack .label { font: 600 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; margin-right: 6px; }
+  .chip {
+    display: inline-block; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px;
+    background: var(--surface); color: var(--ink-2); font-size: 14px; line-height: 1.2;
+  }
+  @media (max-width: 900px) {
+    .hero { padding: 56px 0 72px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-art { justify-self: center; max-width: 340px; order: -1; }
+  }
+  @media (max-width: 600px) {
+    .hero-art { max-width: 240px; }
+    .hero .lede { font-size: 18px; }
+    .hero .actions .btn { flex: 1 1 auto; }
+  }
+
+  /* Services */
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; box-shadow: var(--shadow);
+  }
+  .card h3 { font-size: 20px; margin-top: 20px; }
+  .card p { margin-top: 10px; color: var(--muted); font-size: 16px; }
+  .card ul { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .card li { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--bg-alt); color: var(--ink-2); border: 1px solid var(--line); }
+  .icon {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .icon svg { width: 24px; height: 24px; }
+
+  /* Product */
+  .product {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 36px; box-shadow: var(--shadow);
+  }
+  .product img { width: 96px; height: 96px; border-radius: 22px; }
+  .product h3 { font-size: 28px; }
+  .product .tag {
+    display: inline-block; margin-left: 10px; vertical-align: middle;
+    font: 600 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  }
+  .product p { margin-top: 10px; color: var(--muted); max-width: 620px; }
+  .product ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--ink-2); font-size: 15px; }
+  .product li { display: inline-flex; align-items: center; gap: 8px; }
+  .product li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .platforms { display: flex; flex-direction: column; gap: 8px; color: var(--muted); font-size: 14px; text-align: right; }
+  .platforms strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 860px) {
+    .product { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
+    .product img { width: 72px; height: 72px; border-radius: 16px; }
+    .platforms { text-align: left; }
+  }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; list-style: none; margin: 0; padding: 0; }
+  .steps li { position: relative; padding-top: 28px; border-top: 2px solid var(--line-strong); }
+  .steps li::before {
+    counter-increment: step; content: "0" counter(step);
+    display: block; font: 600 14px/1 var(--mono); color: var(--accent); margin-bottom: 14px;
+  }
+  .steps li:first-child { border-top-color: var(--accent); }
+  .steps h3 { font-size: 20px; }
+  .steps p { margin-top: 10px; color: var(--muted); font-size: 16px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); gap: 36px 24px; } }
+  @media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Engagement */
+  .models .card { display: flex; flex-direction: column; }
+  .models .card .kicker { font: 600 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .models .card h3 { margin-top: 12px; }
+  .models .card .fit { margin-top: auto; padding-top: 20px; font-size: 14px; color: var(--ink-2); border-top: 1px dashed var(--line-strong); margin-top: 20px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about .section-head { margin-bottom: 0; }
+  .principles { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
+  .principles li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
+  .principles .num {
+    width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
+    border: 1px solid var(--line-strong); background: var(--surface); color: var(--accent);
+  }
+  .principles .num svg { width: 20px; height: 20px; }
+  .principles h3 { font-size: 18px; }
+  .principles p { margin-top: 6px; color: var(--muted); font-size: 16px; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* Contact */
+  .contact {
+    position: relative; overflow: hidden;
+    border-radius: 24px; padding: 64px;
+    background: #15171B; color: #F3F2EE; border: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;
+  }
+  .contact::before {
+    content: ""; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 122, 47, .45), transparent);
+    pointer-events: none;
+  }
+  .contact h2 { color: #fff; font-size: clamp(30px, 4.2vw, 44px); }
+  .contact p { margin-top: 16px; color: #B7BCC6; font-size: 18px; max-width: 520px; }
+  .contact .eyebrow { color: #FF8A45; }
+  .contact-box { position: relative; display: grid; gap: 14px; }
+  .contact-box .btn-primary { background: #FF7A2F; color: #15171B; width: 100%; }
+  .contact-box .btn-primary:hover { background: #FF8F4F; }
+  .contact-line { display: flex; align-items: center; gap: 12px; color: #D5D8DE; font-size: 15px; word-break: break-word; }
+  .contact-line svg { width: 18px; height: 18px; color: #FF8A45; flex: none; }
+  .contact-line a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+  .contact-line a:hover { border-bottom-color: #fff; }
+  @media (max-width: 860px) {
+    .contact { grid-template-columns: 1fr; padding: 40px 24px; border-radius: 20px; }
+  }
+
+  /* Support + privacy */
+  .legal { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .legal .card h2 { font-size: 26px; margin-top: 16px; }
+  .legal .card h3 { font-size: 16px; margin-top: 22px; }
+  .legal .card p, .legal .card li { font-size: 15.5px; }
+  .legal .card ol, .legal .card ul.plain { margin: 10px 0 0; padding-left: 20px; color: var(--muted); display: block; }
+  .legal .card ul.plain { list-style: disc; }
+  .legal .card ol li, .legal .card ul.plain li { background: none; border: 0; padding: 0; border-radius: 0; margin: 6px 0; color: var(--muted); font-size: 15.5px; }
+  .legal .card a { color: var(--accent); }
+  .legal .updated { font: 500 13px/1 var(--mono); color: var(--muted); margin-top: 10px; }
+  @media (max-width: 860px) { .legal { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  footer.site { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 14px; }
+  .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+  .foot nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover { color: var(--ink); }
+  .foot .brand { font-size: 16px; color: var(--ink); }
+  .foot .brand svg { width: 24px; height: 24px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="hf-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF6A1A"/>
+      <stop offset="1" stop-color="#F5A300"/>
+    </linearGradient>
+    <symbol id="hf-logo" viewBox="0 0 32 32">
+      <path d="M16 1.5 28.6 8.75v14.5L16 30.5 3.4 23.25V8.75Z" fill="url(#hf-grad)"/>
+      <path d="M13.4 9.5 11.6 22.5M20.4 9.5 18.6 22.5M9.6 13.5h13M9 18.5h13" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="HashFoundry home">
+      <svg aria-hidden="true"><use href="#hf-logo"/></svg>
+      <span>Hash<b>Foundry</b></span>
+    </a>
+    <button class="menu-btn" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a class="cta" href="#contact">Contact us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Software engineering studio</span>
+          <h1 id="hero-title">Software, <em>forged</em> to last.</h1>
+          <p class="lede">HashFoundry designs, builds and supports mobile apps, web platforms and payment systems for businesses — from the first sketch to the App Store launch, and every release after it.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">
+              Start a project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#services">What we do</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 398 338" role="presentation">
+<defs><linearGradient id="molten-hero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6A1A"/><stop offset="1" stop-color="#F5A300"/></linearGradient></defs>
+            <polygon points="30.0,7.0 53.4,20.5 53.4,47.5 30.0,61.0 6.6,47.5 6.6,20.5"/>
+            <polygon points="81.9,7.0 105.3,20.5 105.3,47.5 81.9,61.0 58.6,47.5 58.6,20.5"/>
+            <polygon points="133.9,7.0 157.3,20.5 157.3,47.5 133.9,61.0 110.5,47.5 110.5,20.5"/>
+            <polygon points="185.9,7.0 209.2,20.5 209.2,47.5 185.9,61.0 162.5,47.5 162.5,20.5"/>
+            <polygon class="hot" points="237.8,7.0 261.2,20.5 261.2,47.5 237.8,61.0 214.4,47.5 214.4,20.5" style="opacity:0.25"/>
+            <polygon points="289.8,7.0 313.2,20.5 313.2,47.5 289.8,61.0 266.4,47.5 266.4,20.5"/>
+            <polygon points="341.7,7.0 365.1,20.5 365.1,47.5 341.7,61.0 318.4,47.5 318.4,20.5"/>
+            <polygon points="56.0,52.0 79.3,65.5 79.3,92.5 56.0,106.0 32.6,92.5 32.6,65.5"/>
+            <polygon points="107.9,52.0 131.3,65.5 131.3,92.5 107.9,106.0 84.5,92.5 84.5,65.5"/>
+            <polygon points="159.9,52.0 183.3,65.5 183.3,92.5 159.9,106.0 136.5,92.5 136.5,65.5"/>
+            <polygon points="211.8,52.0 235.2,65.5 235.2,92.5 211.8,106.0 188.5,92.5 188.5,65.5"/>
+            <polygon class="hot" points="263.8,52.0 287.2,65.5 287.2,92.5 263.8,106.0 240.4,92.5 240.4,65.5" style="opacity:1"/>
+            <polygon class="hot" points="315.8,52.0 339.2,65.5 339.2,92.5 315.8,106.0 292.4,92.5 292.4,65.5" style="opacity:0.4"/>
+            <polygon points="367.7,52.0 391.1,65.5 391.1,92.5 367.7,106.0 344.3,92.5 344.3,65.5"/>
+            <polygon points="30.0,97.0 53.4,110.5 53.4,137.5 30.0,151.0 6.6,137.5 6.6,110.5"/>
+            <polygon points="81.9,97.0 105.3,110.5 105.3,137.5 81.9,151.0 58.6,137.5 58.6,110.5"/>
+            <polygon points="133.9,97.0 157.3,110.5 157.3,137.5 133.9,151.0 110.5,137.5 110.5,110.5"/>
+            <polygon class="hot" points="185.9,97.0 209.2,110.5 209.2,137.5 185.9,151.0 162.5,137.5 162.5,110.5" style="opacity:0.85"/>
+            <polygon class="hot" points="237.8,97.0 261.2,110.5 261.2,137.5 237.8,151.0 214.4,137.5 214.4,110.5" style="opacity:0.55"/>
+            <polygon class="hot" points="289.8,97.0 313.2,110.5 313.2,137.5 289.8,151.0 266.4,137.5 266.4,110.5" style="opacity:0.2"/>
+            <polygon points="341.7,97.0 365.1,110.5 365.1,137.5 341.7,151.0 318.4,137.5 318.4,110.5"/>
+            <polygon points="56.0,142.0 79.3,155.5 79.3,182.5 56.0,196.0 32.6,182.5 32.6,155.5"/>
+            <polygon points="107.9,142.0 131.3,155.5 131.3,182.5 107.9,196.0 84.5,182.5 84.5,155.5"/>
+            <polygon class="hot" points="159.9,142.0 183.3,155.5 183.3,182.5 159.9,196.0 136.5,182.5 136.5,155.5" style="opacity:0.6"/>
+            <polygon class="hot" points="211.8,142.0 235.2,155.5 235.2,182.5 211.8,196.0 188.5,182.5 188.5,155.5" style="opacity:1"/>
+            <polygon class="hot" points="263.8,142.0 287.2,155.5 287.2,182.5 263.8,196.0 240.4,182.5 240.4,155.5" style="opacity:0.3"/>
+            <polygon points="315.8,142.0 339.2,155.5 339.2,182.5 315.8,196.0 292.4,182.5 292.4,155.5"/>
+            <polygon points="367.7,142.0 391.1,155.5 391.1,182.5 367.7,196.0 344.3,182.5 344.3,155.5"/>
+            <polygon points="30.0,187.0 53.4,200.5 53.4,227.5 30.0,241.0 6.6,227.5 6.6,200.5"/>
+            <polygon points="81.9,187.0 105.3,200.5 105.3,227.5 81.9,241.0 58.6,227.5 58.6,200.5"/>
+            <polygon class="hot" points="133.9,187.0 157.3,200.5 157.3,227.5 133.9,241.0 110.5,227.5 110.5,200.5" style="opacity:0.9"/>
+            <polygon class="hot" points="185.9,187.0 209.2,200.5 209.2,227.5 185.9,241.0 162.5,227.5 162.5,200.5" style="opacity:0.4"/>
+            <polygon points="237.8,187.0 261.2,200.5 261.2,227.5 237.8,241.0 214.4,227.5 214.4,200.5"/>
+            <polygon points="289.8,187.0 313.2,200.5 313.2,227.5 289.8,241.0 266.4,227.5 266.4,200.5"/>
+            <polygon points="341.7,187.0 365.1,200.5 365.1,227.5 341.7,241.0 318.4,227.5 318.4,200.5"/>
+            <polygon points="56.0,232.0 79.3,245.5 79.3,272.5 56.0,286.0 32.6,272.5 32.6,245.5"/>
+            <polygon class="hot" points="107.9,232.0 131.3,245.5 131.3,272.5 107.9,286.0 84.5,272.5 84.5,245.5" style="opacity:0.35"/>
+            <polygon class="hot" points="159.9,232.0 183.3,245.5 183.3,272.5 159.9,286.0 136.5,272.5 136.5,245.5" style="opacity:0.7"/>
+            <polygon points="211.8,232.0 235.2,245.5 235.2,272.5 211.8,286.0 188.5,272.5 188.5,245.5"/>
+            <polygon points="263.8,232.0 287.2,245.5 287.2,272.5 263.8,286.0 240.4,272.5 240.4,245.5"/>
+            <polygon points="315.8,232.0 339.2,245.5 339.2,272.5 315.8,286.0 292.4,272.5 292.4,245.5"/>
+            <polygon points="367.7,232.0 391.1,245.5 391.1,272.5 367.7,286.0 344.3,272.5 344.3,245.5"/>
+            <polygon points="30.0,277.0 53.4,290.5 53.4,317.5 30.0,331.0 6.6,317.5 6.6,290.5"/>
+            <polygon class="hot" points="81.9,277.0 105.3,290.5 105.3,317.5 81.9,331.0 58.6,317.5 58.6,290.5" style="opacity:0.5"/>
+            <polygon points="133.9,277.0 157.3,290.5 157.3,317.5 133.9,331.0 110.5,317.5 110.5,290.5"/>
+            <polygon points="185.9,277.0 209.2,290.5 209.2,317.5 185.9,331.0 162.5,317.5 162.5,290.5"/>
+            <polygon points="237.8,277.0 261.2,290.5 261.2,317.5 237.8,331.0 214.4,317.5 214.4,290.5"/>
+            <polygon points="289.8,277.0 313.2,290.5 313.2,317.5 289.8,331.0 266.4,317.5 266.4,290.5"/>
+            <polygon points="341.7,277.0 365.1,290.5 365.1,317.5 341.7,331.0 318.4,317.5 318.4,290.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stack" aria-label="Technologies we work with">
+        <span class="label">We build with</span>
+        <span class="chip">Flutter</span>
+        <span class="chip">Swift</span>
+        <span class="chip">Kotlin</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">React &amp; Next.js</span>
+        <span class="chip">Firebase</span>
+        <span class="chip">Google Cloud</span>
+        <span class="chip">Rust</span>
+        <span class="chip">Solana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="alt" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2 id="services-title">One team for the whole product.</h2>
+        <p>We take on the full stack — interface, app, backend and infrastructure — so you have a single partner accountable for shipping a product that works.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
+          <h3>Mobile app development</h3>
+          <p>iOS and Android apps built for real-world use, then taken through App Store and Google Play review, release and updates.</p>
+          <ul><li>iOS</li><li>Android</li><li>Flutter</li><li>Store release</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.25h.01M8.5 6.25h.01"/></svg></div>
+          <h3>Web applications</h3>
+          <p>Fast, accessible websites, dashboards and customer portals that load quickly and are easy for your team to maintain.</p>
+          <ul><li>React</li><li>Next.js</li><li>Dashboards</li><li>Docs sites</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.4 9.1 4.75 4.75 0 0 0 7 18.5Z"/></svg></div>
+          <h3>Cloud &amp; backend</h3>
+          <p>APIs, databases, authentication, messaging and serverless infrastructure designed to stay reliable and affordable as you grow.</p>
+          <ul><li>APIs</li><li>Firebase</li><li>Google Cloud</li><li>Data</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19M6.5 15h4"/></svg></div>
+          <h3>Payments &amp; fintech</h3>
+          <p>Payment flows, wallets, invoicing, receipts and ledgers — engineered so every transaction can be traced and verified.</p>
+          <ul><li>Payments</li><li>Invoicing</li><li>Ledgers</li><li>Multi-currency</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2"/></svg></div>
+          <h3>Blockchain &amp; cryptography</h3>
+          <p>Smart contracts, on-chain integrations, digital signatures and encryption, with careful key management and security reviews.</p>
+          <ul><li>Solana programs</li><li>Rust</li><li>Signing</li><li>Encryption</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.1 0 1.75-.8 1.75-1.7 0-.45-.2-.85-.45-1.15a1.7 1.7 0 0 1 1.3-2.8h1.9a3.95 3.95 0 0 0 4-4C20.5 6.9 16.7 3.5 12 3.5Z"/><circle cx="7.75" cy="11" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="15" cy="7.75" r="1"/></svg></div>
+          <h3>Product design &amp; UX</h3>
+          <p>Research, user flows, interface design and clickable prototypes, so you can validate an idea before investing in a full build.</p>
+          <ul><li>UX research</li><li>UI design</li><li>Prototypes</li><li>Design systems</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" aria-labelledby="products-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Products</span>
+        <h2 id="products-title">We build our own products, too.</h2>
+        <p>Running our own apps in production keeps our engineering honest — the same practices go into the work we do for clients.</p>
+      </div>
+      <article class="product">
+        <img src="data:image/png;base64,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" alt="PurePay app icon" width="96" height="96">
+        <div>
+          <h3>PurePay <span class="tag">Coming soon</span></h3>
+          <p>Payments for people and merchants. Send and receive money, hold balances in multiple currencies, issue invoices and coupons, and verify every receipt. Built on Solana.</p>
+          <ul>
+            <li>Peer-to-peer payments</li>
+            <li>Multi-currency</li>
+            <li>Invoices &amp; coupons</li>
+            <li>Verifiable receipts</li>
+          </ul>
+        </div>
+        <div class="platforms">
+          <strong>Platforms</strong>
+          <span>iPhone</span>
+          <span>Android</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="alt" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How we work</span>
+        <h2 id="process-title">A clear path from idea to launch.</h2>
+        <p>Short cycles, working software at every step, and no surprises about scope, timeline or cost.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>Discover</h3>
+          <p>We learn your business, users and constraints, then agree on goals, scope and a realistic plan.</p>
+        </li>
+        <li>
+          <h3>Design</h3>
+          <p>User flows, interface designs and a technical architecture you can review before any code is written.</p>
+        </li>
+        <li>
+          <h3>Build</h3>
+          <p>Development in short iterations with regular demos, automated tests and builds you can try on your own devices.</p>
+        </li>
+        <li>
+          <h3>Launch &amp; support</h3>
+          <p>Store submission, production rollout and monitoring — then ongoing maintenance, updates and new features.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Engagement models -->
+  <section id="engage" aria-labelledby="engage-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Ways to work with us</span>
+        <h2 id="engage-title">Pick the model that fits.</h2>
+      </div>
+      <div class="grid models">
+        <article class="card">
+          <span class="kicker">Project</span>
+          <h3>Fixed-scope build</h3>
+          <p>A defined product or feature, delivered against an agreed scope and timeline.</p>
+          <p class="fit">Best for a new app, an MVP or a website.</p>
+        </article>
+        <article class="card">
+          <span class="kicker">Team</span>
+          <h3>Dedicated engineers</h3>
+          <p>Designers and developers who work as an extension of your team, on your roadmap and priorities.</p>
+          <p class="fit">Best for growing products with ongoing work.</p>
+        </article>
+        <article class="card">
+          <span class="kicker">Care</span>
+          <h3>Maintenance &amp; support</h3>
+          <p>OS and dependency updates, store compliance, bug fixes and monitoring for apps already in production.</p>
+          <p class="fit">Best for keeping a live app healthy.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="alt" id="about" aria-labelledby="about-title">
+    <div class="wrap about">
+      <div class="section-head">
+        <span class="eyebrow">About</span>
+        <h2 id="about-title">Small studio. Serious engineering.</h2>
+        <p>HashFoundry is an independent software company. We work closely with founders and businesses to turn ideas into dependable products — and we stay around after launch to keep them running well.</p>
+        <p>The name says how we work: software shaped with care, then tested until it holds.</p>
+      </div>
+      <ul class="principles">
+        <li>
+          <span class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div>
+            <h3>Security by default</h3>
+            <p>Encryption, least-privilege access and careful handling of keys and personal data from the first commit.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+          <div>
+            <h3>Ship early, ship often</h3>
+            <p>You see working software within weeks, and every iteration ends with something you can use and judge.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4.5h5v5M19.5 4.5 11 13M10 6.5H6.5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V14"/></svg></span>
+          <div>
+            <h3>Transparent and yours</h3>
+            <p>Clear estimates, open communication, and documented source code you can take forward with or without us.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2 id="contact-title">Have a project in mind?</h2>
+          <p>Tell us what you're building, where you are today and when you'd like to launch. We'll reply with next steps.</p>
+        </div>
+        <div class="contact-box">
+          <a class="btn btn-primary" href="mailto:hello@hashfoundry.com?subject=New%20project%20enquiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+            Email us
+          </a>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+            <a href="mailto:hello@hashfoundry.com">hello@hashfoundry.com</a>
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.25"/></svg>
+            <!-- Replace with the registered business address (must match your D-U-N-S record). -->
+            <span>Working with clients worldwide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support + Privacy -->
+  <section class="alt" id="legal" aria-label="Support and privacy">
+    <div class="wrap legal">
+      <article class="card" id="support">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg></div>
+        <h2>App support</h2>
+        <p>Using one of our apps and need help? Email <a href="mailto:hello@hashfoundry.com?subject=App%20support">hello@hashfoundry.com</a> and include:</p>
+        <ol>
+          <li>The app name and version (shown in the app's Settings).</li>
+          <li>Your device model and operating system version.</li>
+          <li>What you expected to happen, what happened instead, and a screenshot if possible.</li>
+        </ol>
+        <h3>Your account and data</h3>
+        <p>To ask what data an app holds about you, or to request its deletion, email us with the subject "Data request" and we'll guide you through it.</p>
+        <p style="margin-top:12px">Never share your recovery phrase, passwords or private keys with anyone — HashFoundry staff will never ask for them.</p>
+      </article>
+      <article class="card" id="privacy">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6Z"/></svg></div>
+        <h2>Privacy</h2>
+        <p class="updated">Last updated: 20 November 2026</p>
+        <h3>This website</h3>
+        <ul class="plain">
+          <li>No cookies, analytics or advertising trackers are used on this site.</li>
+          <li>Our hosting provider may keep standard server logs (such as IP address and browser type) for security and reliability.</li>
+        </ul>
+        <h3>When you contact us</h3>
+        <ul class="plain">
+          <li>We use your name, email address and message only to reply and to provide the service you asked about.</li>
+          <li>We don't sell or rent personal information, and we share it only when required by law.</li>
+          <li>You can ask us to access, correct or delete your information at any time.</li>
+        </ul>
+        <h3>Our apps</h3>
+        <p>Each HashFoundry app has its own privacy policy describing what it collects and why, linked from its App Store and Google Play listing.</p>
+        <h3>Questions</h3>
+        <p>Email <a href="mailto:hello@hashfoundry.com?subject=Privacy">hello@hashfoundry.com</a>.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a class="brand" href="#top" aria-label="HashFoundry, back to top">
+      <svg aria-hidden="true"><use href="#hf-logo"/></svg>
+      <span>Hash<b>Foundry</b></span>
+    </a>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <p>&copy; <span id="year">2026</span> HashFoundry. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.menu-btn');
+    var nav = document.getElementById('primary-nav');
+    function close() { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Open menu'); }
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
